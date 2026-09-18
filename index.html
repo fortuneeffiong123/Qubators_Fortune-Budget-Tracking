@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fortune Budget Tracking - a simple tool to plan daily spending, track expenses, and stay within your monthly business budget." />
+  <title>Fortune Budget Tracking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">F</span>
+        <div>
+          <h1>Fortune</h1>
+          <p>Budget Tracking</p>
+        </div>
+      </div>
+      <nav class="header-nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#expenses">Expenses</a>
+        <a href="#categories">Categories</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-title">
+      <div>
+        <h2>Financial Dashboard</h2>
+        <p class="subtitle" id="month-label">Managing your business finances</p>
+      </div>
+      <button class="btn btn-ghost" id="btn-clear-all" type="button">Reset Demo Data</button>
+    </section>
+
+    <section class="alert-stack" id="alert-stack" aria-live="polite"></section>
+
+    <!-- Summary cards -->
+    <section id="overview" class="cards-grid">
+      <article class="card card-highlight">
+        <span class="card-label">Monthly Budget</span>
+        <span class="card-value" id="display-budget">&mdash;</span>
+        <a href="#settings" class="card-link">Set budget &rarr;</a>
+      </article>
+      <article class="card">
+        <span class="card-label">Total Spent</span>
+        <span class="card-value" id="display-total-spent">&mdash;</span>
+        <span class="card-foot" id="display-total-foot"></span>
+      </article>
+      <article class="card">
+        <span class="card-label">Remaining Budget</span>
+        <span class="card-value" id="display-remaining">&mdash;</span>
+        <span class="card-foot" id="display-remaining-pct"></span>
+      </article>
+      <article class="card">
+        <span class="card-label">Today's Spending</span>
+        <span class="card-value" id="display-today-spent">&mdash;</span>
+        <span class="card-foot" id="display-today-warning"></span>
+      </article>
+      <article class="card">
+        <span class="card-label">Today's Spending Limit</span>
+        <span class="card-value" id="display-today-limit">&mdash;</span>
+        <span class="card-foot" id="display-today-ratio"></span>
+      </article>
+    </section>
+
+    <!-- Spending progress -->
+    <section class="grid-two">
+      <article class="panel">
+        <h3>Monthly Spending Progress</h3>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="month-progress-bar" style="width: 0%"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="month-progress-text">0% of budget used</span>
+          <span id="month-progress-days"></span>
+        </div>
+        <p class="hint" id="daily-plan-summary"></p>
+      </article>
+      <article class="panel">
+        <h3>Today's Spending</h3>
+        <div class="progress-wrap" data-tone="neutral">
+          <div class="progress-bar progress-bar-neutral" id="today-progress-bar" style="width: 0%"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="today-progress-text">0% of today's limit used</span>
+          <span id="today-progress-date"></span>
+        </div>
+        <p class="hint" id="today-hint"></p>
+      </article>
+    </section>
+
+    <!-- Forms + lists -->
+    <section class="grid-two">
+      <article class="panel">
+        <h3>Record Expense</h3>
+        <form id="expense-form" class="form-stack">
+          <div class="field">
+            <label for="expense-amount">Amount</label>
+            <input type="number" id="expense-amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+          <div class="field">
+            <label for="expense-category">Category</label>
+            <select id="expense-category" name="category" required>
+              <option value="">Select category&hellip;</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="expense-date">Date</label>
+            <input type="date" id="expense-date" name="date" required />
+          </div>
+          <div class="field">
+            <label for="expense-note">Note <span class="optional">(optional)</span></label>
+            <input type="text" id="expense-note" name="note" placeholder="e.g. Office supplies" maxlength="120" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Add Expense</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <h3>Spending Categories</h3>
+        <form id="category-form" class="form-inline">
+          <div class="field grow">
+            <label for="category-name" class="sr-only">Category name</label>
+            <input type="text" id="category-name" name="name" placeholder="New category name" maxlength="40" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+        <ul class="category-list" id="category-list"></ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <h3>Recent Expenses</h3>
+        <p class="hint" id="expense-total-hint"></p>
+      </div>
+      <ul class="expense-list" id="expense-list"></ul>
+      <p class="empty-state" id="expense-empty">No expenses recorded yet. Add your first expense above.</p>
+    </section>
+
+    <!-- Settings -->
+    <section id="settings" class="panel">
+      <h3>Settings</h3>
+      <p class="hint">Set your monthly business budget. If it changes later, the daily spending plan will update automatically.</p>
+      <form id="budget-form" class="form-inline">
+        <div class="field grow">
+          <label for="budget-amount">Monthly Budget</label>
+          <input type="number" id="budget-amount" name="amount" step="0.01" min="1" placeholder="e.g. 5000" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Save Budget</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>Fortune Budget Tracking &mdash; simple planning for business finances.</p>
+      <p class="hint">All data is saved locally in your browser.</p>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="confirm-modal" hidden>
+    <div class="modal">
+      <h3>Reset all data?</h3>
+      <p class="hint">This will remove your budget, categories, and all recorded expenses. This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="modal-cancel" type="button">Cancel</button>
+        <button class="btn btn-danger" id="modal-confirm" type="button">Yes, Reset Everything</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
