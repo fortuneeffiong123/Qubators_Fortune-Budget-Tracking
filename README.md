@@ -2,6 +2,9 @@
 
 A simple, clean, and responsive web application that helps small business owners and entrepreneurs plan daily spending, track expenses, and stay within their monthly business budget.
 
+Live Test App
+: https://fortune-budget-tracking.netlify.app/
+
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -98,6 +101,9 @@ Fortune Budget Tracking is a static web app with no build step and no dependenci
 Because the app is fully static, you can host it anywhere static sites are served:
 
 - **Netlify** — drag-and-drop the project folder at [app.netlify.com/drop](https://app.netlify.com/drop)
+- 
+https://fortune-budget-tracking.netlify.app
+
 - **Vercel** — `vercel` from the project folder
 - **GitHub Pages** — push the folder to a repository and enable Pages
 
@@ -152,8 +158,5 @@ All data is stored **locally in your browser** using `localStorage`. Nothing is 
 
 ## License
 
-[MIT](./LICENSE)
-
----
 
 Made for small business owners who want to control their finances without the complexity.
