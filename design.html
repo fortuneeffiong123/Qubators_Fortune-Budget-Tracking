@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fortune Budget Tracking - Design Preview</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: #123b5d;
+      color: white;
+      padding: 24px 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand h1 {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    .brand p {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #18a999;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    main {
+      padding: 35px 0;
+    }
+
+    .intro {
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .intro p {
+      color: #667085;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-label {
+      color: #667085;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #18a999;
+      border-color: #18a999;
+    }
+
+    .alert {
+      background: #fff7e6;
+      border-left: 4px solid #f59e0b;
+      padding: 14px;
+      border-radius: 6px;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .category-list {
+      list-style: none;
+    }
+
+    .category-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid #edf0f4;
+      font-size: 14px;
+    }
+
+    .category-list li:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand h1 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container header-content">
+
+      <div class="brand">
+        <h1>Fortune Budget Tracking</h1>
+        <p>Simple budgeting for small businesses and entrepreneurs</p>
+      </div>
+
+      <button class="btn btn-primary">
+        Add Expense
+      </button>
+
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="intro">
+      <h2>Budget Dashboard</h2>
+      <p>
+        Monitor your monthly budget, daily spending and remaining funds
+        from one simple dashboard.
+      </p>
+    </section>
+
+    <section class="summary-grid">
+
+      <div class="card">
+        <div class="card-label">Monthly Budget</div>
+        <div class="card-value">₦500,000</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Total Spending</div>
+        <div class="card-value">₦185,000</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Remaining Budget</div>
+        <div class="card-value">₦315,000</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Daily Plan</div>
+        <div class="card-value">₦10,500</div>
+      </div>
+
+    </section>
+
+    <section class="content-grid">
+
+      <div class="card">
+
+        <h3 class="section-title">Record Daily Expense</h3>
+
+        <div class="form-group">
+          <label for="expense">Expense Amount</label>
+          <input
+            type="number"
+            id="expense"
+            placeholder="Enter amount e.g. 15000"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="category">Spending Category</label>
+          <select id="category">
+            <option>Transport</option>
+            <option>Food</option>
+            <option>Supplies</option>
+            <option>Utilities</option>
+            <option>Marketing</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="What was the expense for?"
+          >
+        </div>
+
+        <button class="btn btn-primary">
+          Save Expense
+        </button>
+
+        <div class="alert">
+          <strong>Budget Alert:</strong>
+          You have used approximately 37% of your monthly budget.
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h3 class="section-title">Spending Categories</h3>
+
+        <ul class="category-list">
+          <li>
+            <span>Transport</span>
+            <strong>₦45,000</strong>
+          </li>
+
+          <li>
+            <span>Food</span>
+            <strong>₦38,000</strong>
+          </li>
+
+          <li>
+            <span>Supplies</span>
+            <strong>₦52,000</strong>
+          </li>
+
+          <li>
+            <span>Utilities</span>
+            <strong>₦25,000</strong>
+          </li>
+
+          <li>
+            <span>Marketing</span>
+            <strong>₦25,000</strong>
+          </li>
+        </ul>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    Fortune Budget Tracking &copy; 2026
+  </footer>
+
+</body>
+</html>
